@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art of Drumming HQ – Double Bass Tracker</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0b;--surface:#121214;--surface2:#1a1a1e;--surface3:#222228;
+  --red:#e02020;--red-dim:#7a1010;
+  --orange:#e06820;--gold:#c8a040;
+  --text:#e8e8e0;--text-dim:#888880;--text-muted:#444448;
+  --border:#2a2a30;
+  --mono:'Share Tech Mono',monospace;--display:'Barlow Condensed',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:100vh;font-size:13px}
+.header{background:linear-gradient(180deg,#1a0808 0%,var(--surface) 100%);border-bottom:2px solid var(--red);padding:18px 24px 14px;display:flex;align-items:flex-end;gap:20px}
+.header-left{flex:1}
+.header-eyebrow{font-size:10px;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:4px}
+.header-title{font-family:var(--display);font-size:34px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
+.header-title span{color:var(--red)}
+.day-badge{background:var(--red);color:#fff;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:2px;padding:4px 10px;text-transform:uppercase}
+.day-number{font-family:var(--display);font-size:56px;font-weight:300;line-height:1}
+.day-number strong{font-weight:900;color:var(--red)}
+.main{display:flex;min-height:calc(100vh - 95px)}
+.sidebar{width:260px;border-right:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.content{flex:1;overflow:hidden;min-width:0}
+.section{padding:16px}
+.section-label{font-size:9px;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--red-dim)}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:10px;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px}
+.field input,.field select{width:100%;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:13px;padding:7px 9px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--red)}
+.field select option{background:var(--surface3)}
+.field-row{display:flex;gap:8px}
+.field-row .field{flex:1}
+.btn{width:100%;background:var(--red);color:#fff;border:none;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;padding:11px;cursor:pointer;transition:background .15s;margin-top:4px}
+.btn:hover{background:#c01818}
+.session-scroll{overflow-y:auto;max-height:calc(100vh - 360px)}
+.session-item{padding:10px 14px;border-bottom:1px solid var(--border);position:relative}
+.s-day{font-size:10px;color:var(--red);letter-spacing:1px}
+.s-date{font-size:11px;color:var(--text-dim)}
+.s-ex{font-size:12px;color:var(--text);margin-top:2px}
+.s-bpm{font-size:10px;color:var(--gold)}
+.s-del{position:absolute;right:8px;top:10px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:2px 4px}
+.s-del:hover{color:var(--red)}
+.no-sessions{padding:20px 14px;font-size:11px;color:var(--text-muted);text-align:center;letter-spacing:1px}
+.tabs{display:flex;border-bottom:1px solid var(--border)}
+.tab{padding:11px 18px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--red);border-bottom-color:var(--red)}
+.pane{display:none;padding:20px}
+.pane.active{display:block}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stats-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:14px 16px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)}
+.stat-val{font-family:var(--display);font-size:36px;font-weight:900;color:var(--text);line-height:1}
+.stat-val.accent{color:var(--red)}
+.stat-val.gold{color:var(--gold)}
+.stat-val.orange{color:var(--orange)}
+.stat-label{font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
+.chart-container{background:var(--surface);border:1px solid var(--border);padding:16px;margin-bottom:20px}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.chart-title{font-size:10px;letter-spacing:3px;color:var(--red);text-transform:uppercase}
+.chart-legend{display:flex;gap:14px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text-dim)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+canvas{display:block;width:100%}
+.breakdown-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+.ex-card{background:var(--surface);border:1px solid var(--border);padding:14px}
+.ex-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.ex-stat-row{display:flex;justify-content:space-between;margin-bottom:4px}
+.ex-stat-key{font-size:10px;color:var(--text-dim)}
+.ex-stat-val{font-size:11px;color:var(--gold)}
+.progress-bar-track{background:var(--surface3);height:4px;margin-top:8px}
+.progress-bar-fill{height:4px;background:linear-gradient(90deg,var(--red-dim),var(--red))}
+.log-table{width:100%;border-collapse:collapse;font-size:12px}
+.log-table th{text-align:left;font-size:9px;letter-spacing:2px;color:var(--red);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--red-dim);background:var(--surface)}
+.log-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.log-table td:first-child{color:var(--text);font-family:var(--display);font-size:14px;font-weight:700}
+.log-table tr:hover td{background:var(--surface2)}
+.ex-tag{display:inline-block;background:var(--surface3);border:1px solid var(--border);padding:2px 6px;font-size:10px;letter-spacing:1px;color:var(--text)}
+.bpm-arrow{color:var(--red);margin:0 3px}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--red);color:#fff;font-family:var(--display);font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 18px;font-size:13px;opacity:0;transform:translateY(10px);transition:all .2s;pointer-events:none;z-index:999}
+.toast.show{opacity:1;transform:translateY(0)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--red-dim)}
+.filter-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.filter-btn{background:var(--surface3);border:1px solid var(--border);color:var(--text-dim);font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;cursor:pointer;transition:all .15s}
+.filter-btn:hover,.filter-btn.active{background:var(--red-dim);border-color:var(--red);color:var(--text)}
+.session-item{cursor:pointer;transition:background .1s}
+.session-item:hover{background:var(--surface2)}
+.session-item.editing{background:#1a0808;border-left:2px solid var(--red)}
+.yt-link{font-size:10px;color:#4488ff;text-decoration:none;display:block;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.yt-link:hover{color:#66aaff}
+.btn-cancel{width:100%;background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:9px;cursor:pointer;transition:background .15s;margin-top:6px}
+.btn-cancel:hover{color:var(--text);background:var(--surface2)}
+.edit-indicator{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;display:none}
+.edit-indicator.visible{display:block}
+.log-table tr{cursor:pointer}
+.log-table tr.editing td{background:#1a0808!important}
+.yt-cell a{color:#4488ff;text-decoration:none;font-size:11px}
+.yt-cell a:hover{color:#66aaff}
+
+/* ── WELCOME OVERLAY ── */
+.welcome-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.welcome-overlay.hidden{display:none}
+.welcome-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--red);width:100%;max-width:440px;padding:36px 32px}
+.welcome-logo{font-size:9px;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.welcome-title{font-family:var(--display);font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:2px;line-height:1.1;margin-bottom:6px}
+.welcome-title span{color:var(--red)}
+.welcome-sub{font-size:11px;color:var(--text-dim);margin-bottom:28px;line-height:1.6}
+.welcome-field{margin-bottom:14px}
+.welcome-field label{display:block;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px}
+.welcome-field input{width:100%;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--display);font-size:22px;font-weight:700;padding:10px 12px;outline:none;letter-spacing:1px;transition:border-color .15s}
+.welcome-field input:focus{border-color:var(--red)}
+.welcome-field input::placeholder{color:var(--text-muted);font-weight:300}
+.welcome-hint{font-size:10px;color:var(--text-muted);margin-top:4px}
+.welcome-btn{width:100%;background:var(--red);color:#fff;border:none;font-family:var(--display);font-weight:900;font-size:16px;letter-spacing:4px;text-transform:uppercase;padding:14px;cursor:pointer;margin-top:8px;transition:background .15s}
+.welcome-btn:hover{background:#c01818}
+.welcome-footer{font-size:10px;color:var(--text-muted);margin-top:16px;text-align:center;line-height:1.5}
+
+/* ── EXPORT / IMPORT ── */
+.hdr-btns{display:flex;gap:6px;align-items:center}
+.hdr-btn{background:none;border:1px solid var(--border);color:var(--text-dim);font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:4px 10px;cursor:pointer;text-transform:uppercase;transition:all .15s;white-space:nowrap}
+.hdr-btn:hover{color:var(--text);border-color:var(--text-muted)}
+.import-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.import-overlay.hidden{display:none}
+.import-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--gold);width:100%;max-width:460px;padding:32px}
+.import-title{font-family:var(--display);font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.import-title span{color:var(--gold)}
+.import-sub{font-size:11px;color:var(--text-dim);margin-bottom:20px;line-height:1.6}
+.import-drop{border:2px dashed var(--border);padding:30px 20px;text-align:center;cursor:pointer;transition:border-color .15s;margin-bottom:16px}
+.import-drop:hover,.import-drop.dragover{border-color:var(--gold)}
+.import-drop-label{font-size:11px;color:var(--text-dim);letter-spacing:1px}
+.import-drop-label strong{color:var(--text);display:block;font-family:var(--display);font-size:18px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:2px}
+.import-warning{font-size:10px;color:var(--orange);margin-bottom:16px;line-height:1.5}
+.import-btn-row{display:flex;gap:8px}
+.import-btn{flex:1;background:var(--gold);color:#000;border:none;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:11px;cursor:pointer;transition:background .15s}
+.import-btn:hover{background:#b8902e}
+.import-btn-cancel{flex:1;background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:11px;cursor:pointer}
+.import-btn-cancel:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<!-- WELCOME OVERLAY -->
+<div class="welcome-overlay hidden" id="welcomeOverlay">
+  <div class="welcome-box">
+    <div class="welcome-logo">● Art of Drumming HQ</div>
+    <div class="welcome-title">DOUBLE BASS<br><span>TRACKER</span></div>
+    <div class="welcome-sub">Track every rep, every BPM, every day.<br>Let's set up your personal tracker.</div>
+    <div class="welcome-field">
+      <label>Your Name</label>
+      <input type="text" id="welcomeName" placeholder="e.g. Jamie" maxlength="40" autocomplete="off">
+      <div class="welcome-hint">This is how your tracker will be labelled.</div>
+    </div>
+    <div class="welcome-field">
+      <label>Day 1 Date</label>
+      <input type="date" id="welcomeDate">
+      <div class="welcome-hint">The date you started your double bass journey.</div>
+    </div>
+    <button class="welcome-btn" onclick="completeSetup()">START TRACKING ▶</button>
+    <div class="welcome-footer">Your data stays on your device — nothing is shared or uploaded.</div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">● Art of Drumming HQ</div>
+    <div class="header-title">DOUBLE BASS <span>TRACKER</span></div>
+    <div id="headerName" style="font-size:11px;color:var(--text-dim);margin-top:4px;letter-spacing:1px"></div>
+  </div>
+  <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+    <div class="hdr-btns">
+      <button class="hdr-btn" onclick="exportData()">⬇ Export</button>
+      <button class="hdr-btn" onclick="showImport()">⬆ Import</button>
+      <button class="hdr-btn" onclick="showSettings()">⚙ Settings</button>
+    </div>
+    <div>
+      <div class="day-badge">Highest Day</div>
+      <div class="day-number"><strong id="headerDay">—</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="section">
+      <div class="section-label" id="formLabel">Log Session</div>
+      <div class="edit-indicator" id="editIndicator">✎ Editing session</div>
+      <input type="hidden" id="editingId" value="">
+      <div class="field">
+        <label>Exercise Type</label>
+        <select id="exType">
+          <option value="Floor – Full Leg">Floor – Full Leg</option>
+          <option value="Floor – Heel Up">Floor – Heel Up</option>
+          <option value="Floor – Heel Down">Floor – Heel Down</option>
+          <option value="Endurance Ramp">Endurance Ramp</option>
+          <option value="Core">Core</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Total Sets</label><input type="number" id="sets" min="1" value="4"></div>
+        <div class="field"><label>Set Length (min)</label><input type="number" id="setLen" min="0.5" step="0.5" value="5"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Start BPM</label><input type="number" id="startBPM" min="40" max="400" value="80"></div>
+        <div class="field"><label>End BPM</label><input type="number" id="endBPM" min="40" max="400" value="100"></div>
+      </div>
+      <div class="field"><label>Session Date</label><input type="date" id="sessionDate"></div>
+      <div class="field"><label>Day Number</label><input type="number" id="dayNum" min="1" placeholder="e.g. 70"></div>
+      <div class="field"><label>YouTube Link (optional)</label><input type="url" id="ytLink" placeholder="https://youtube.com/..."></div>
+      <button class="btn" id="submitBtn" onclick="logSession()">▶ LOG SESSION</button>
+      <button class="btn-cancel" id="cancelBtn" onclick="cancelEdit()" style="display:none">✕ CANCEL EDIT</button>
+    </div>
+    <div class="section" style="padding-top:0">
+      <div class="section-label">Recent Sessions</div>
+      <div class="session-scroll" id="sessionList"><div class="no-sessions">Loading...</div></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('stats')">Statistics</div>
+      <div class="tab" onclick="switchTab('progress')">Progress Chart</div>
+      <div class="tab" onclick="switchTab('log')">Full Log</div>
+    </div>
+
+    <div class="pane active" id="pane-stats">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-val accent" id="s-days">0</div><div class="stat-label">Highest Day #</div></div>
+        <div class="stat-card"><div class="stat-val" id="s-sessions">0</div><div class="stat-label">Total Sessions</div></div>
+        <div class="stat-card"><div class="stat-val gold" id="s-maxBPM">—</div><div class="stat-label">Peak BPM Reached</div></div>
+        <div class="stat-card"><div class="stat-val orange" id="s-avgGain">—</div><div class="stat-label">Avg BPM Gain / Session</div></div>
+      </div>
+      <div class="stats-grid-3">
+        <div class="stat-card"><div class="stat-val" id="s-totalSets">0</div><div class="stat-label">Total Sets Logged</div></div>
+        <div class="stat-card"><div class="stat-val" id="s-totalMin">0</div><div class="stat-label">Total Minutes</div></div>
+        <div class="stat-card"><div class="stat-val gold" style="font-size:22px;line-height:1.2" id="s-favEx">—</div><div class="stat-label">Top Exercise</div></div>
+      </div>
+      <div class="breakdown-grid" id="exBreakdown"></div>
+    </div>
+
+    <div class="pane" id="pane-progress">
+      <div style="margin-bottom:12px">
+        <div class="filter-row" id="chartFilter">
+          <button class="filter-btn active" onclick="setFilter('all',this)">All Exercises</button>
+          <button class="filter-btn" onclick="setFilter('Core',this)">Core</button>
+          <button class="filter-btn" onclick="setFilter('Floor – Full Leg',this)">Full Leg</button>
+          <button class="filter-btn" onclick="setFilter('Floor – Heel Up',this)">Heel Up</button>
+          <button class="filter-btn" onclick="setFilter('Floor – Heel Down',this)">Heel Down</button>
+          <button class="filter-btn" onclick="setFilter('Endurance Ramp',this)">Endurance</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="chart-title">End BPM Over Time</div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>End BPM</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#444448"></div>Start BPM</div>
+          </div>
+        </div>
+        <canvas id="bpmChart" height="200"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><div class="chart-title">Minutes Practiced per Session</div></div>
+        <canvas id="minChart" height="120"></canvas>
+      </div>
+    </div>
+
+    <div class="pane" id="pane-log">
+      <div style="overflow-x:auto">
+        <table class="log-table">
+          <thead><tr><th>Day</th><th>Date</th><th>Exercise</th><th>Sets × Min</th><th>BPM Range</th><th>Gain</th><th>Video</th></tr></thead>
+          <tbody id="logBody"><tr><td colspan="6"><div class="empty-state">Loading...</div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- IMPORT OVERLAY -->
+<div class="import-overlay hidden" id="importOverlay">
+  <div class="import-box">
+    <div class="import-title">IMPORT <span>DATA</span></div>
+    <div class="import-sub">Drag and drop your exported <strong style="color:var(--text)">kicktracker-backup.json</strong> file below, or click to browse.</div>
+    <div class="import-drop" id="importDrop" onclick="document.getElementById('importFileInput').click()">
+      <div class="import-drop-label">
+        <strong>Drop JSON file here</strong>
+        or click to browse
+      </div>
+    </div>
+    <div class="import-warning">⚠ This will merge imported sessions with your existing data. Duplicate sessions are skipped automatically.</div>
+    <div class="import-btn-row">
+      <button class="import-btn-cancel" onclick="hideImport()">✕ Cancel</button>
+    </div>
+  </div>
+</div>
+<input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImportFile(this)">
+
+<script>
+const STORAGE_KEY = 'kicktracker_sessions';
+const PROFILE_KEY = 'kicktracker_profile';
+
+// ── PROFILE (name + start date) ──
+let profile = {name:'', startDate:''};
+
+function loadProfile(){
+  try{const p=localStorage.getItem(PROFILE_KEY);if(p)profile=JSON.parse(p);}catch(e){}
+}
+function saveProfile(){
+  try{localStorage.setItem(PROFILE_KEY,JSON.stringify(profile));}catch(e){}
+}
+function applyProfile(){
+  const nameEl=document.getElementById('headerName');
+  if(profile.name) nameEl.textContent=profile.name.toUpperCase()+"'S TRACKER";
+  else nameEl.textContent='';
+}
+function completeSetup(){
+  const name=document.getElementById('welcomeName').value.trim();
+  const date=document.getElementById('welcomeDate').value;
+  if(!name){document.getElementById('welcomeName').focus();return;}
+  profile={name,startDate:date};
+  saveProfile();
+  document.getElementById('welcomeOverlay').classList.add('hidden');
+  applyProfile();
+}
+function showSettings(){
+  // Re-populate fields with current values
+  document.getElementById('welcomeName').value=profile.name||'';
+  document.getElementById('welcomeDate').value=profile.startDate||'';
+  // Change button text temporarily
+  document.querySelector('.welcome-btn').textContent='SAVE CHANGES ▶';
+  document.querySelector('.welcome-title').innerHTML='YOUR <span>SETTINGS</span>';
+  document.querySelector('.welcome-sub').textContent='Update your name or start date below.';
+  document.getElementById('welcomeOverlay').classList.remove('hidden');
+  // Re-wire button
+  document.querySelector('.welcome-btn').onclick=function(){
+    completeSetup();
+    document.querySelector('.welcome-btn').textContent='START TRACKING ▶';
+    document.querySelector('.welcome-title').innerHTML='DOUBLE BASS<br><span>TRACKER</span>';
+    document.querySelector('.welcome-sub').textContent='Track every rep, every BPM, every day.\nLet\'s set up your personal tracker.';
+    document.querySelector('.welcome-btn').onclick=completeSetup;
+  };
+}
+
+let sessions = [];
+let chartFilter = 'all';
+
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(sessions));}catch(e){}}
+function load(){
+  try{
+    const stored = localStorage.getItem(STORAGE_KEY);
+    sessions = stored ? JSON.parse(stored) : [];
+  }catch(e){sessions=[];}
+}
+
+loadProfile();
+load();
+const today = new Date();
+document.getElementById('sessionDate').valueAsDate = today;
+// Set welcome date default to today
+document.getElementById('welcomeDate').valueAsDate = today;
+
+// Show welcome overlay if no name set yet
+if(!profile.name){
+  document.getElementById('welcomeOverlay').classList.remove('hidden');
+} else {
+  applyProfile();
+}
+
+const maxDay = sessions.length>0 ? Math.max(...sessions.map(s=>s.day)) : 0;
+document.getElementById('dayNum').value = maxDay + 1;
+render();
+
+function logSession(){
+  const exType=document.getElementById('exType').value;
+  const sets=parseInt(document.getElementById('sets').value)||1;
+  const setLen=parseFloat(document.getElementById('setLen').value)||5;
+  const startBPM=parseInt(document.getElementById('startBPM').value)||80;
+  const endBPM=parseInt(document.getElementById('endBPM').value)||80;
+  const date=document.getElementById('sessionDate').value||today.toISOString().split('T')[0];
+  const day=parseInt(document.getElementById('dayNum').value)||(sessions.length+1);
+  const ytLink=document.getElementById('ytLink').value.trim();
+  const editingId=document.getElementById('editingId').value;
+
+  if(editingId){
+    // Edit existing
+    const idx=sessions.findIndex(s=>s.id===parseInt(editingId));
+    if(idx>=0){
+      sessions[idx]={...sessions[idx],exType,sets,setLen,startBPM,endBPM,date,day,ytLink};
+      sessions.sort((a,b)=>a.day-b.day||a.id-b.id);
+      save();
+      cancelEdit();
+      showToast('SESSION UPDATED');
+      render();
+    }
+  } else {
+    sessions.push({id:Date.now(),day,date,exType,sets,setLen,startBPM,endBPM,ytLink});
+    sessions.sort((a,b)=>a.day-b.day||a.id-b.id);
+    save();
+    document.getElementById('dayNum').value=day+1;
+    document.getElementById('ytLink').value='';
+    showToast('DAY '+day+' LOGGED');
+    render();
+  }
+}
+
+function deleteSession(id){
+  sessions=sessions.filter(s=>s.id!==id);
+  save();cancelEdit();render();
+}
+
+function loadSession(id){
+  const s=sessions.find(s=>s.id===id);
+  if(!s)return;
+  document.getElementById('exType').value=s.exType;
+  document.getElementById('sets').value=s.sets;
+  document.getElementById('setLen').value=s.setLen;
+  document.getElementById('startBPM').value=s.startBPM;
+  document.getElementById('endBPM').value=s.endBPM;
+  document.getElementById('sessionDate').value=s.date;
+  document.getElementById('dayNum').value=s.day;
+  document.getElementById('ytLink').value=s.ytLink||'';
+  document.getElementById('editingId').value=s.id;
+  document.getElementById('editIndicator').classList.add('visible');
+  document.getElementById('submitBtn').textContent='✔ SAVE CHANGES';
+  document.getElementById('cancelBtn').style.display='block';
+  document.getElementById('formLabel').textContent='Edit Session';
+  // highlight active item in sidebar
+  document.querySelectorAll('.session-item').forEach(el=>el.classList.toggle('editing',parseInt(el.dataset.id)===id));
+  // scroll sidebar to top
+  document.querySelector('.sidebar').scrollTop=0;
+}
+
+function cancelEdit(){
+  document.getElementById('editingId').value='';
+  document.getElementById('editIndicator').classList.remove('visible');
+  document.getElementById('submitBtn').textContent='▶ LOG SESSION';
+  document.getElementById('cancelBtn').style.display='none';
+  document.getElementById('formLabel').textContent='Log Session';
+  document.getElementById('ytLink').value='';
+  document.querySelectorAll('.session-item').forEach(el=>el.classList.remove('editing'));
+  document.querySelectorAll('.log-table tr').forEach(el=>el.classList.remove('editing'));
+}
+
+function setFilter(f,btn){
+  chartFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  drawCharts();
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['stats','progress','log'][i]===name);});
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pane-'+name).classList.add('active');
+  if(name==='progress')setTimeout(drawCharts,50);
+}
+
+function render(){renderHeader();renderSidebar();renderStats();renderLog();if(document.getElementById('pane-progress').classList.contains('active'))drawCharts();}
+
+function renderHeader(){
+  const m=sessions.length>0?Math.max(...sessions.map(s=>s.day)):'—';
+  document.getElementById('headerDay').textContent=m;
+}
+
+function renderSidebar(){
+  const list=document.getElementById('sessionList');
+  if(!sessions.length){list.innerHTML='<div class="no-sessions">No sessions</div>';return;}
+  const editingId=parseInt(document.getElementById('editingId').value)||null;
+  list.innerHTML=[...sessions].reverse().slice(0,40).map(s=>`
+    <div class="session-item${editingId===s.id?' editing':''}" data-id="${s.id}" onclick="loadSession(${s.id})">
+      <button class="s-del" onclick="event.stopPropagation();deleteSession(${s.id})">✕</button>
+      <div class="s-day">DAY ${s.day}</div>
+      <div class="s-date">${fmtDate(s.date)}</div>
+      <div class="s-ex">${s.exType}</div>
+      <div class="s-bpm">${s.startBPM}→${s.endBPM} BPM · ${s.sets}×${s.setLen}min</div>
+      ${s.ytLink?`<a class="yt-link" href="${s.ytLink}" target="_blank" onclick="event.stopPropagation()">▶ ${s.ytLink.replace(/https?:\/\/(www\.)?/,'')}</a>`:''}
+    </div>`).join('');
+}
+
+function renderStats(){
+  if(!sessions.length)return;
+  const maxDay=Math.max(...sessions.map(s=>s.day));
+  const maxBPM=Math.max(...sessions.map(s=>s.endBPM));
+  const avgGain=sessions.reduce((a,s)=>a+(s.endBPM-s.startBPM),0)/sessions.length;
+  const totalSets=sessions.reduce((a,s)=>a+s.sets,0);
+  const totalMin=sessions.reduce((a,s)=>a+(s.sets*s.setLen),0);
+  const exCount={};sessions.forEach(s=>{exCount[s.exType]=(exCount[s.exType]||0)+1;});
+  const favEx=Object.entries(exCount).sort((a,b)=>b[1]-a[1])[0][0];
+  document.getElementById('s-days').textContent=maxDay;
+  document.getElementById('s-sessions').textContent=sessions.length;
+  document.getElementById('s-maxBPM').textContent=maxBPM;
+  document.getElementById('s-avgGain').textContent=(avgGain>=0?'+':'')+avgGain.toFixed(1);
+  document.getElementById('s-totalSets').textContent=totalSets;
+  document.getElementById('s-totalMin').textContent=Math.round(totalMin);
+  document.getElementById('s-favEx').textContent=favEx.replace('Floor \u2013 ','').replace('Endurance Ramp','Ramp');
+  const EX=['Floor \u2013 Full Leg','Floor \u2013 Heel Up','Floor \u2013 Heel Down','Endurance Ramp','Core'];
+  const maxS=Math.max(...EX.map(ex=>exCount[ex]||0),1);
+  document.getElementById('exBreakdown').innerHTML=EX.map(ex=>{
+    const ss=sessions.filter(s=>s.exType===ex);
+    if(!ss.length)return'';
+    const peak=Math.max(...ss.map(s=>s.endBPM));
+    const avgS=ss.reduce((a,s)=>a+s.startBPM,0)/ss.length;
+    const avgE=ss.reduce((a,s)=>a+s.endBPM,0)/ss.length;
+    const pct=Math.round(((exCount[ex]||0)/maxS)*100);
+    return`<div class="ex-card">
+      <div class="ex-name">${ex}</div>
+      <div class="ex-stat-row"><span class="ex-stat-key">Sessions</span><span class="ex-stat-val">${ss.length}</span></div>
+      <div class="ex-stat-row"><span class="ex-stat-key">Peak BPM</span><span class="ex-stat-val">${peak}</span></div>
+      <div class="ex-stat-row"><span class="ex-stat-key">Avg ${Math.round(avgS)}\u2192${Math.round(avgE)} BPM</span><span class="ex-stat-val">+${Math.round(avgE-avgS)}</span></div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderLog(){
+  const tbody=document.getElementById('logBody');
+  if(!sessions.length){tbody.innerHTML='<tr><td colspan="7"><div class="empty-state">No sessions logged yet</div></td></tr>';return;}
+  const editingId=parseInt(document.getElementById('editingId').value)||null;
+  tbody.innerHTML=[...sessions].reverse().map(s=>`
+    <tr class="${editingId===s.id?'editing':''}" onclick="loadSession(${s.id})" title="Click to edit">
+      <td>DAY ${s.day}</td>
+      <td>${fmtDate(s.date)}</td>
+      <td><span class="ex-tag">${s.exType}</span></td>
+      <td>${s.sets} × ${s.setLen} min</td>
+      <td>${s.startBPM}<span class="bpm-arrow">\u2192</span>${s.endBPM}</td>
+      <td style="color:${s.endBPM>=s.startBPM?'var(--red)':'#4488ff'}">${s.endBPM>=s.startBPM?'+':''}${s.endBPM-s.startBPM}</td>
+      <td class="yt-cell">${s.ytLink?`<a href="${s.ytLink}" target="_blank" onclick="event.stopPropagation()">▶ Watch</a>`:''}</td>
+    </tr>`).join('');
+}
+
+function filteredSessions(){
+  if(chartFilter==='all')return sessions;
+  return sessions.filter(s=>s.exType===chartFilter);
+}
+
+function drawCharts(){drawBPMChart();drawMinChart();}
+
+function drawBPMChart(){
+  const canvas=document.getElementById('bpmChart');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.parentElement.clientWidth-32;
+  canvas.width=W;canvas.style.width=W+'px';
+  const H=200;
+  const data=filteredSessions();
+  if(!data.length){ctx.fillStyle='#444';ctx.font='12px monospace';ctx.fillText('No data for this filter',20,80);return;}
+  ctx.clearRect(0,0,W,H);
+  const pad={l:46,r:16,t:12,b:32};
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  const allB=data.flatMap(s=>[s.startBPM,s.endBPM]);
+  const minB=Math.min(...allB)-5,maxB=Math.max(...allB)+5;
+  const xOf=i=>pad.l+(i/(data.length-1||1))*iW;
+  const yOf=v=>pad.t+iH-((v-minB)/(maxB-minB))*iH;
+  for(let g=0;g<=4;g++){
+    const y=pad.t+(g/4)*iH;
+    ctx.strokeStyle='#2a2a30';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+    ctx.fillStyle='#555558';ctx.font='10px monospace';ctx.textAlign='right';
+    ctx.fillText(Math.round(maxB-(g/4)*(maxB-minB)),pad.l-5,y+4);
+  }
+  // fill area under end BPM
+  ctx.beginPath();
+  data.forEach((s,i)=>i===0?ctx.moveTo(xOf(i),yOf(s.endBPM)):ctx.lineTo(xOf(i),yOf(s.endBPM)));
+  ctx.lineTo(xOf(data.length-1),pad.t+iH);
+  ctx.lineTo(pad.l,pad.t+iH);
+  ctx.closePath();
+  const aGrad=ctx.createLinearGradient(0,pad.t,0,pad.t+iH);
+  aGrad.addColorStop(0,'rgba(224,32,32,0.15)');aGrad.addColorStop(1,'rgba(224,32,32,0)');
+  ctx.fillStyle=aGrad;ctx.fill();
+  // start BPM dashed
+  ctx.strokeStyle='#444448';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+  ctx.beginPath();data.forEach((s,i)=>i===0?ctx.moveTo(xOf(i),yOf(s.startBPM)):ctx.lineTo(xOf(i),yOf(s.startBPM)));
+  ctx.stroke();ctx.setLineDash([]);
+  // end BPM solid
+  const lg=ctx.createLinearGradient(pad.l,0,W-pad.r,0);
+  lg.addColorStop(0,'#7a1010');lg.addColorStop(1,'#e02020');
+  ctx.strokeStyle=lg;ctx.lineWidth=2.5;
+  ctx.beginPath();data.forEach((s,i)=>i===0?ctx.moveTo(xOf(i),yOf(s.endBPM)):ctx.lineTo(xOf(i),yOf(s.endBPM)));
+  ctx.stroke();
+  data.forEach((s,i)=>{ctx.fillStyle='#e02020';ctx.beginPath();ctx.arc(xOf(i),yOf(s.endBPM),3,0,Math.PI*2);ctx.fill();});
+  ctx.fillStyle='#555558';ctx.font='10px monospace';ctx.textAlign='center';
+  const step=Math.max(1,Math.floor(data.length/10));
+  data.forEach((s,i)=>{if(i%step===0||i===data.length-1)ctx.fillText('D'+s.day,xOf(i),H-6);});
+}
+
+function drawMinChart(){
+  const canvas=document.getElementById('minChart');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.parentElement.clientWidth-32;
+  canvas.width=W;canvas.style.width=W+'px';
+  const H=120;
+  const data=filteredSessions();
+  if(!data.length)return;
+  ctx.clearRect(0,0,W,H);
+  const pad={l:46,r:16,t:10,b:28};
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  const mins=data.map(s=>s.sets*s.setLen);
+  const maxM=Math.max(...mins,1);
+  const barW=Math.max(1,iW/data.length-1);
+  ctx.fillStyle='#1a1a1e';ctx.fillRect(pad.l,pad.t,iW,iH);
+  data.forEach((s,i)=>{
+    const m=s.sets*s.setLen,x=pad.l+(i/data.length)*iW+0.5,h=(m/maxM)*iH,y=pad.t+iH-h;
+    const g=ctx.createLinearGradient(0,y,0,y+h);
+    g.addColorStop(0,'#e02020');g.addColorStop(1,'#7a1010');
+    ctx.fillStyle=g;ctx.fillRect(x,y,barW,h);
+  });
+  ctx.fillStyle='#555558';ctx.font='10px monospace';ctx.textAlign='right';
+  [0,Math.round(maxM/2),maxM].forEach(v=>{const y=pad.t+iH-(v/maxM)*iH;ctx.fillText(v+'m',pad.l-4,y+4);});
+  const step=Math.max(1,Math.floor(data.length/10));
+  ctx.textAlign='center';
+  data.forEach((s,i)=>{if(i%step===0||i===data.length-1)ctx.fillText('D'+s.day,pad.l+(i/data.length)*iW+barW/2,H-6);});
+}
+
+function fmtDate(d){
+  if(!d)return'—';
+  const[y,m,dy]=d.split('-');
+  return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(m)-1]+' '+parseInt(dy)+' '+y;
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+window.addEventListener('resize',()=>{if(document.getElementById('pane-progress').classList.contains('active'))drawCharts();});
+
+// ── EXPORT ──
+function exportData(){
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    profile: profile,
+    sessions: sessions
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kicktracker-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('DATA EXPORTED');
+}
+
+// ── IMPORT ──
+function showImport(){
+  document.getElementById('importOverlay').classList.remove('hidden');
+  // Wire drag-and-drop
+  const drop = document.getElementById('importDrop');
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => {
+    e.preventDefault();
+    drop.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if(file) processImportFile(file);
+  };
+}
+function hideImport(){
+  document.getElementById('importOverlay').classList.add('hidden');
+}
+function handleImportFile(input){
+  const file = input.files[0];
+  if(file) processImportFile(file);
+  input.value = '';
+}
+function processImportFile(file){
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      // Support both raw array and versioned export object
+      const imported = Array.isArray(data) ? data : (data.sessions || []);
+      const importedProfile = (!Array.isArray(data) && data.profile) ? data.profile : null;
+
+      // Merge sessions — skip any with matching id
+      const existingIds = new Set(sessions.map(s => s.id));
+      const toAdd = imported.filter(s => !existingIds.has(s.id));
+      sessions = [...sessions, ...toAdd].sort((a,b) => a.day-b.day || a.id-b.id);
+      save();
+
+      // Offer to import profile only if current one is empty
+      if(importedProfile && !profile.name && importedProfile.name){
+        profile = importedProfile;
+        saveProfile();
+        applyProfile();
+      }
+
+      hideImport();
+      render();
+      showToast(toAdd.length + ' SESSIONS IMPORTED');
+    } catch(err) {
+      showToast('INVALID FILE — USE A BACKUP JSON');
+    }
+  };
+  reader.readAsText(file);
+}
+</script>
+</body>
+</html>
