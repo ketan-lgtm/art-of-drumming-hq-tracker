@@ -9,12 +9,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0b;--surface:#121214;--surface2:#1a1a1e;--surface3:#222228;
-  --red:#e02020;--red-dim:#7a1010;--orange:#e06820;--gold:#c8a040;--green:#20a060;
-  --text:#e8e8e0;--text-dim:#888880;--text-muted:#444448;--border:#2a2a30;
+  --bg:#1c1f26;--surface:#242830;--surface2:#2c3040;--surface3:#343848;
+  --red:#e02020;--red-dim:#8a2020;--orange:#e06820;--gold:#d4a840;--green:#22b06a;
+  --text:#f0f2f5;--text-dim:#b0b4bc;--text-muted:#6a7080;--border:#363c48;
   --mono:'Share Tech Mono',monospace;--display:'Barlow Condensed',sans-serif;
 }
-body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:100vh;font-size:13px}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:100vh;font-size:14px}
 
 /* AUTH SCREEN */
 .auth-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:2000}
@@ -36,7 +36,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:1
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-size:10px;letter-spacing:3px;color:var(--text-muted);text-transform:uppercase}
 
-.header{background:linear-gradient(180deg,#1a0808 0%,var(--surface) 100%);border-bottom:2px solid var(--red);padding:18px 24px 14px;display:flex;align-items:flex-end;gap:20px}
+.header{background:linear-gradient(180deg,#161920 0%,var(--surface) 100%);border-bottom:2px solid var(--red);padding:20px 28px 16px;display:flex;align-items:flex-end;gap:20px}
 .header-left{flex:1}
 .header-eyebrow{font-size:10px;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:4px}
 .header-title{font-family:var(--display);font-size:34px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
@@ -44,15 +44,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:1
 .day-badge{background:var(--red);color:#fff;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:2px;padding:4px 10px;text-transform:uppercase}
 .day-number{font-family:var(--display);font-size:56px;font-weight:300;line-height:1}
 .day-number strong{font-weight:900;color:var(--red)}
-.main{display:flex;min-height:calc(100vh - 95px)}
-.sidebar{width:268px;border-right:1px solid var(--border);background:var(--surface);flex-shrink:0;overflow-y:auto}
+.main{display:flex;min-height:calc(100vh - 100px)}
+.sidebar{width:290px;border-right:1px solid var(--border);background:var(--surface);flex-shrink:0;overflow-y:auto}
 .content{flex:1;overflow:hidden;min-width:0}
-.section{padding:16px}
-.section-label{font-size:9px;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--red-dim)}
-.field{margin-bottom:10px}
-.field label{display:block;font-size:10px;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px}
-.field input,.field select{width:100%;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:13px;padding:7px 9px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .15s}
-.field input:focus,.field select:focus{border-color:var(--red)}
+.section{padding:20px}
+.section-label{font-size:9px;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--red-dim)}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;letter-spacing:1px;color:var(--text-dim);margin-bottom:5px}
+.field input,.field select{width:100%;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:14px;padding:9px 11px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--red);background:var(--surface2)}
 .field select option{background:var(--surface3)}
 .field-row{display:flex;gap:8px}
 .field-row .field{flex:1}
@@ -60,57 +60,57 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:1
 .btn:hover{background:#c01818}
 .btn-cancel{width:100%;background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:9px;cursor:pointer;margin-top:6px}
 .btn-cancel:hover{color:var(--text)}
-.session-scroll{overflow-y:auto;max-height:280px}
-.session-item{padding:10px 14px;border-bottom:1px solid var(--border);position:relative;cursor:pointer;transition:background .1s}
+.session-scroll{overflow-y:auto;max-height:300px}
+.session-item{padding:13px 16px;border-bottom:1px solid var(--border);position:relative;cursor:pointer;transition:background .1s}
 .session-item:hover{background:var(--surface2)}
-.session-item.editing{background:#1a0808;border-left:2px solid var(--red)}
-.s-day{font-size:10px;color:var(--red);letter-spacing:1px}
-.s-date{font-size:11px;color:var(--text-dim)}
-.s-ex{font-size:12px;color:var(--text);margin-top:2px}
-.s-bpm{font-size:10px;color:var(--gold)}
-.s-feel{font-size:13px;margin-top:2px}
-.s-del{position:absolute;right:8px;top:10px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:2px 4px}
+.session-item.editing{background:rgba(224,32,32,0.1);border-left:3px solid var(--red)}
+.s-day{font-size:11px;color:var(--red);letter-spacing:1px;font-weight:bold}
+.s-date{font-size:12px;color:var(--text-dim);margin-top:1px}
+.s-ex{font-size:13px;color:var(--text);margin-top:3px}
+.s-bpm{font-size:11px;color:var(--gold);margin-top:2px}
+.s-feel{font-size:14px;margin-top:3px}
+.s-del{position:absolute;right:10px;top:13px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:15px;padding:2px 4px}
 .s-del:hover{color:var(--red)}
-.no-sessions{padding:20px 14px;font-size:11px;color:var(--text-muted);text-align:center;letter-spacing:1px}
+.no-sessions{padding:24px 16px;font-size:12px;color:var(--text-muted);text-align:center;letter-spacing:1px}
 .tabs{display:flex;border-bottom:1px solid var(--border);flex-wrap:wrap}
-.tab{padding:11px 16px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+.tab{padding:13px 18px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
 .tab:hover{color:var(--text)}
 .tab.active{color:var(--red);border-bottom-color:var(--red)}
-.pane{display:none;padding:20px}
+.pane{display:none;padding:24px}
 .pane.active{display:block}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.stats-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.stat-card{background:var(--surface);border:1px solid var(--border);padding:14px 16px;position:relative;overflow:hidden}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)}
-.stat-val{font-family:var(--display);font-size:36px;font-weight:900;color:var(--text);line-height:1}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stats-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:18px 20px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.stat-val{font-family:var(--display);font-size:38px;font-weight:900;color:var(--text);line-height:1}
 .stat-val.accent{color:var(--red)}
 .stat-val.gold{color:var(--gold)}
 .stat-val.orange{color:var(--orange)}
 .stat-val.green{color:var(--green)}
-.stat-label{font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
-.chart-container{background:var(--surface);border:1px solid var(--border);padding:16px;margin-bottom:20px}
-.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.stat-label{font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:6px}
+.chart-container{background:var(--surface);border:1px solid var(--border);padding:20px;margin-bottom:20px}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .chart-title{font-size:10px;letter-spacing:3px;color:var(--red);text-transform:uppercase}
 .chart-legend{display:flex;gap:14px}
-.legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text-dim)}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim)}
 .legend-dot{width:8px;height:8px;border-radius:50%}
 canvas{display:block;width:100%}
-.breakdown-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-.ex-card{background:var(--surface);border:1px solid var(--border);padding:14px}
-.ex-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-.ex-stat-row{display:flex;justify-content:space-between;margin-bottom:4px}
-.ex-stat-key{font-size:10px;color:var(--text-dim)}
-.ex-stat-val{font-size:11px;color:var(--gold)}
-.progress-bar-track{background:var(--surface3);height:4px;margin-top:8px}
-.progress-bar-fill{height:4px;background:linear-gradient(90deg,var(--red-dim),var(--red))}
+.breakdown-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+.ex-card{background:var(--surface);border:1px solid var(--border);padding:18px}
+.ex-name{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.ex-stat-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.ex-stat-key{font-size:11px;color:var(--text-dim)}
+.ex-stat-val{font-size:12px;color:var(--gold)}
+.progress-bar-track{background:var(--surface3);height:5px;margin-top:10px}
+.progress-bar-fill{height:5px;background:linear-gradient(90deg,var(--red-dim),var(--red))}
 .progress-bar-fill.green{background:linear-gradient(90deg,#0a5030,var(--green))}
-.log-table{width:100%;border-collapse:collapse;font-size:12px}
-.log-table th{text-align:left;font-size:9px;letter-spacing:2px;color:var(--red);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--red-dim);background:var(--surface)}
-.log-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-dim)}
-.log-table td:first-child{color:var(--text);font-family:var(--display);font-size:14px;font-weight:700}
+.log-table{width:100%;border-collapse:collapse;font-size:13px}
+.log-table th{text-align:left;font-size:10px;letter-spacing:2px;color:var(--red);text-transform:uppercase;padding:10px 12px;border-bottom:1px solid var(--red-dim);background:var(--surface)}
+.log-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.log-table td:first-child{color:var(--text);font-family:var(--display);font-size:15px;font-weight:700}
 .log-table tr{cursor:pointer}
 .log-table tr:hover td{background:var(--surface2)}
-.log-table tr.editing td{background:#1a0808!important}
+.log-table tr.editing td{background:rgba(224,32,32,0.08)!important}
 .ex-tag{display:inline-block;background:var(--surface3);border:1px solid var(--border);padding:2px 6px;font-size:10px;letter-spacing:1px;color:var(--text)}
 .bpm-arrow{color:var(--red);margin:0 3px}
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
@@ -128,20 +128,20 @@ canvas{display:block;width:100%}
 .yt-cell a:hover{color:#66aaff}
 .edit-indicator{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;display:none}
 .edit-indicator.visible{display:block}
-.feel-slider-wrap{margin-bottom:10px}
-.feel-slider-wrap label{display:block;font-size:10px;letter-spacing:1px;color:var(--text-dim);margin-bottom:6px}
+.feel-slider-wrap{margin-bottom:14px}
+.feel-slider-wrap label{display:block;font-size:11px;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px}
 .feel-emojis{display:flex;justify-content:space-between;margin-bottom:4px}
 .feel-emoji{font-size:20px;cursor:pointer;opacity:0.35;transition:all .15s;text-align:center;flex:1}
 .feel-emoji:hover{opacity:0.7;transform:scale(1.1)}
 .feel-emoji.active{opacity:1;transform:scale(1.25)}
-.goal-card{background:var(--surface);border:1px solid var(--border);padding:14px;margin-bottom:12px}
-.goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.goal-ex{font-family:var(--display);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.goal-pct{font-family:var(--display);font-size:28px;font-weight:900;color:var(--green)}
-.goal-bar-track{background:var(--surface3);height:8px;margin-bottom:8px;position:relative}
-.goal-bar-fill{height:8px;background:linear-gradient(90deg,#0a5030,var(--green));transition:width .5s}
-.goal-bar-fill.complete{background:linear-gradient(90deg,#0a5030,#40d090)}
-.goal-stats{display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim)}
+.goal-card{background:var(--surface);border:1px solid var(--border);padding:18px;margin-bottom:12px}
+.goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.goal-ex{font-family:var(--display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.goal-pct{font-family:var(--display);font-size:30px;font-weight:900;color:var(--green)}
+.goal-bar-track{background:var(--surface3);height:8px;margin-bottom:10px}
+.goal-bar-fill{height:8px;background:linear-gradient(90deg,#1a5e38,var(--green));transition:width .5s}
+.goal-bar-fill.complete{background:linear-gradient(90deg,#1a5e38,#40d090)}
+.goal-stats{display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim)}
 .goal-stats span{color:var(--gold)}
 .goals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .set-goal-btn{background:none;border:1px dashed var(--border);color:var(--text-muted);font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .15s;width:100%;margin-top:4px}
@@ -150,7 +150,7 @@ canvas{display:block;width:100%}
 .goal-input-row input{flex:1;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:13px;padding:6px 8px;outline:none}
 .goal-input-row input:focus{border-color:var(--green)}
 .goal-save-btn{background:var(--green);color:#fff;border:none;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:7px 12px;cursor:pointer}
-.truebpm-banner{background:linear-gradient(135deg,#0a1a12 0%,#0f2a1a 100%);border:1px solid var(--green);border-left:4px solid var(--green);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.truebpm-banner{background:linear-gradient(135deg,#1a2e22 0%,#1e3428 100%);border:1px solid var(--green);border-left:4px solid var(--green);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .truebpm-left{flex:1}
 .truebpm-label{font-family:var(--display);font-size:11px;font-weight:900;letter-spacing:5px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
 .truebpm-desc{font-size:11px;color:var(--text-dim);line-height:1.6;max-width:380px}
@@ -208,6 +208,157 @@ canvas{display:block;width:100%}
 .csv-instructions code{color:var(--gold);font-family:var(--mono)}
 .dl-template-btn{width:100%;background:var(--surface3);border:1px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:10px;cursor:pointer;margin-bottom:12px;transition:all .15s}
 .dl-template-btn:hover{background:var(--gold);color:#000}
+
+/* HELP BUTTON */
+.hdr-btn.help{border-color:var(--gold);color:var(--gold)}
+.hdr-btn.help:hover{background:var(--gold);color:#000}
+
+/* IMPORT WIZARD */
+.wizard-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1100;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.wizard-overlay.hidden{display:none}
+.wizard-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--gold);width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column}
+.wizard-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.wizard-title{font-family:var(--display);font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:2px}
+.wizard-title span{color:var(--gold)}
+.wizard-steps{display:flex;gap:0;margin-top:12px}
+.wizard-step{flex:1;text-align:center;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:6px;color:var(--text-muted);border-bottom:2px solid var(--border);transition:all .15s}
+.wizard-step.active{color:var(--gold);border-bottom-color:var(--gold)}
+.wizard-step.done{color:var(--green);border-bottom-color:var(--green)}
+.wizard-body{padding:20px 24px;overflow-y:auto;flex:1}
+.wizard-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.wizard-btn{background:var(--gold);color:#000;border:none;font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:3px;text-transform:uppercase;padding:10px 24px;cursor:pointer;transition:background .15s}
+.wizard-btn:hover{background:#b8902e}
+.wizard-btn:disabled{opacity:0.3;cursor:not-allowed}
+.wizard-btn-sec{background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;cursor:pointer}
+.wizard-btn-sec:hover{color:var(--text)}
+.wizard-drop{border:2px dashed var(--border);padding:40px 20px;text-align:center;cursor:pointer;transition:all .15s;margin-bottom:16px}
+.wizard-drop:hover,.wizard-drop.dragover{border-color:var(--gold);background:rgba(200,160,64,0.05)}
+.wizard-drop-icon{font-size:40px;margin-bottom:10px}
+.wizard-drop-label{font-family:var(--display);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:6px}
+.wizard-drop-sub{font-size:11px;color:var(--text-dim)}
+.wizard-tip{background:var(--surface3);border-left:3px solid var(--gold);padding:10px 14px;font-size:11px;color:var(--text-dim);line-height:1.6;margin-bottom:14px}
+.wizard-tip strong{color:var(--text)}
+.col-mapper{width:100%;border-collapse:collapse;margin-bottom:16px}
+.col-mapper th{text-align:left;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.col-mapper td{padding:8px 10px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle}
+.col-mapper td:first-child{color:var(--text);font-weight:bold}
+.col-mapper td:nth-child(2){color:var(--text-dim);font-family:var(--mono);font-size:11px}
+.col-mapper select{background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 8px;outline:none;width:100%}
+.col-mapper select:focus{border-color:var(--gold)}
+.preview-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:16px}
+.preview-table th{text-align:left;font-size:9px;letter-spacing:1px;color:var(--gold);text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--border);background:var(--surface2);position:sticky;top:0}
+.preview-table td{padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.preview-table td:first-child{color:var(--text);font-family:var(--display);font-weight:700;font-size:13px}
+.preview-table tr.row-ok td{background:transparent}
+.preview-table tr.row-warn td{background:rgba(224,104,32,0.08)}
+.preview-table tr.row-err td{background:rgba(224,32,32,0.08)}
+.preview-table tr.row-skip td{opacity:0.4}
+.row-badge{display:inline-block;font-size:9px;padding:2px 5px;letter-spacing:1px;border-radius:2px;font-family:var(--mono)}
+.row-badge.ok{background:rgba(32,160,96,0.2);color:var(--green)}
+.row-badge.warn{background:rgba(224,104,32,0.2);color:var(--orange)}
+.row-badge.err{background:rgba(224,32,32,0.2);color:var(--red)}
+.row-badge.skip{background:var(--surface3);color:var(--text-muted)}
+.preview-scroll{max-height:340px;overflow-y:auto;border:1px solid var(--border)}
+.import-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.summary-card{background:var(--surface2);border:1px solid var(--border);padding:12px;text-align:center}
+.summary-val{font-family:var(--display);font-size:28px;font-weight:900}
+.summary-val.green{color:var(--green)}
+.summary-val.orange{color:var(--orange)}
+.summary-val.red{color:var(--red)}
+.summary-val.muted{color:var(--text-muted)}
+.summary-label{font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:3px}
+.progress-import{width:100%;height:6px;background:var(--surface3);margin-bottom:8px}
+.progress-import-fill{height:6px;background:linear-gradient(90deg,var(--gold),var(--green));transition:width .3s}
+.wizard-status{font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:8px}
+
+/* HELP MODAL */
+.help-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.help-overlay.hidden{display:none}
+.help-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--gold);width:100%;max-width:620px;max-height:85vh;display:flex;flex-direction:column}
+.help-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.help-head-title{font-family:var(--display);font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--gold)}
+.help-close{background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;padding:4px 8px}
+.help-close:hover{color:var(--text)}
+.help-body{padding:20px 22px;overflow-y:auto;flex:1}
+.help-section{margin-bottom:20px}
+.help-section-title{font-family:var(--display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--red-dim)}
+.help-item{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.help-key{font-size:9px;letter-spacing:1px;background:var(--surface3);border:1px solid var(--border);padding:3px 7px;color:var(--gold);white-space:nowrap;flex-shrink:0;font-family:var(--mono);margin-top:2px}
+.help-val{font-size:12px;color:var(--text-dim);line-height:1.5}
+.help-val strong{color:var(--text)}
+.help-footer{padding:14px 22px;border-top:1px solid var(--border);text-align:center;font-size:10px;color:var(--text-muted);flex-shrink:0}
+
+/* IMPORT WIZARD */
+.wizard-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.wizard-overlay.hidden{display:none}
+.wizard-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--gold);width:100%;max-width:780px;max-height:90vh;display:flex;flex-direction:column}
+.wizard-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.wizard-title{font-family:var(--display);font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:2px}
+.wizard-title span{color:var(--gold)}
+.wizard-steps{display:flex;gap:0;margin-top:12px}
+.wizard-step{flex:1;padding:6px 0;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:center;border-bottom:2px solid var(--border)}
+.wizard-step.active{color:var(--gold);border-bottom-color:var(--gold)}
+.wizard-step.done{color:var(--green);border-bottom-color:var(--green)}
+.wizard-body{padding:20px 24px;overflow-y:auto;flex:1}
+.wizard-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
+.wizard-btn{background:var(--gold);color:#000;border:none;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;cursor:pointer;transition:background .15s}
+.wizard-btn:hover{background:#b8902e}
+.wizard-btn-sec{background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;cursor:pointer}
+.wizard-btn-sec:hover{color:var(--text)}
+.wizard-btn:disabled{opacity:0.4;cursor:not-allowed}
+
+/* Drop zone */
+.wiz-drop{border:2px dashed var(--border);padding:40px 20px;text-align:center;cursor:pointer;transition:all .15s;margin-bottom:16px}
+.wiz-drop:hover,.wiz-drop.dragover{border-color:var(--gold);background:rgba(200,160,64,0.05)}
+.wiz-drop-icon{font-size:40px;margin-bottom:12px}
+.wiz-drop-title{font-family:var(--display);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:6px}
+.wiz-drop-sub{font-size:11px;color:var(--text-dim);line-height:1.6}
+
+/* Column mapper */
+.mapper-grid{display:grid;grid-template-columns:1fr 40px 1fr;gap:8px;align-items:center;margin-bottom:8px}
+.mapper-label{font-size:11px;color:var(--text-dim);padding:6px 8px;background:var(--surface3);border:1px solid var(--border)}
+.mapper-arrow{text-align:center;color:var(--text-muted);font-size:14px}
+.mapper-select{width:100%;background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:6px 8px;outline:none;-webkit-appearance:none}
+.mapper-select:focus{border-color:var(--gold)}
+.mapper-header{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:6px 8px}
+.mapper-note{font-size:10px;color:var(--text-muted);margin-bottom:14px;line-height:1.6}
+
+/* Preview table */
+.preview-wrap{overflow-x:auto;max-height:340px;overflow-y:auto}
+.preview-table{width:100%;border-collapse:collapse;font-size:11px}
+.preview-table th{text-align:left;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0}
+.preview-table td{padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-dim);white-space:nowrap}
+.preview-table tr.row-ok td{background:transparent}
+.preview-table tr.row-warn td{background:rgba(224,104,32,0.08)}
+.preview-table tr.row-err td{background:rgba(224,32,32,0.08)}
+.preview-table td.cell-ok{color:var(--text)}
+.preview-table td.cell-warn{color:var(--orange)}
+.preview-table td.cell-err{color:var(--red)}
+.preview-summary{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.preview-pill{font-size:10px;letter-spacing:1px;padding:4px 10px;border-radius:0}
+.preview-pill.ok{background:rgba(32,160,96,0.15);color:var(--green);border:1px solid var(--green)}
+.preview-pill.warn{background:rgba(224,104,32,0.15);color:var(--orange);border:1px solid var(--orange)}
+.preview-pill.err{background:rgba(224,32,32,0.15);color:var(--red);border:1px solid var(--red)}
+.preview-pill.skip{background:rgba(136,136,128,0.15);color:var(--text-dim);border:1px solid var(--border)}
+
+/* Help overlay */
+.help-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.help-overlay.hidden{display:none}
+.help-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--red);width:100%;max-width:560px;max-height:85vh;display:flex;flex-direction:column}
+.help-header{padding:20px 24px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.help-title{font-family:var(--display);font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px}
+.help-title span{color:var(--red)}
+.help-close{background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;padding:4px}
+.help-close:hover{color:var(--text)}
+.help-body{padding:20px 24px;overflow-y:auto;flex:1}
+.help-section{margin-bottom:20px}
+.help-section-title{font-family:var(--display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--red-dim)}
+.help-item{margin-bottom:10px}
+.help-item-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;letter-spacing:0.5px}
+.help-item-desc{font-size:11px;color:var(--text-dim);line-height:1.6}
+.help-footer{padding:14px 24px;border-top:1px solid var(--border);flex-shrink:0;text-align:center}
+.help-footer a{color:var(--red);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+.help-footer a:hover{color:var(--text)}
 </style>
 </head>
 <body>
@@ -255,8 +406,9 @@ canvas{display:block;width:100%}
   </div>
   <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
     <div class="hdr-btns">
+      <button class="hdr-btn" onclick="showHelp()">? Help</button>
       <button class="hdr-btn" onclick="exportData()">⬇ Export</button>
-      <button class="hdr-btn" onclick="showImport()">⬆ Import</button>
+      <button class="hdr-btn" onclick="showImportWizard()">⬆ Import</button>
       <button class="hdr-btn danger" onclick="signOut()">Sign Out</button>
     </div>
     <div>
@@ -409,40 +561,69 @@ canvas{display:block;width:100%}
 
 <div class="toast" id="toast"></div>
 
-<!-- IMPORT OVERLAY -->
-<div class="import-overlay hidden" id="importOverlay">
-  <div class="import-box">
-    <div class="import-title">IMPORT <span>DATA</span></div>
-    <div class="import-sub">Restore a backup or import historical data from a spreadsheet.</div>
-    <div class="import-tabs">
-      <div class="import-tab active" onclick="switchImportTab('backup')">JSON Backup</div>
-      <div class="import-tab" onclick="switchImportTab('csv')">CSV Spreadsheet</div>
+<!-- HELP OVERLAY -->
+<div class="help-overlay hidden" id="helpOverlay">
+  <div class="help-box">
+    <div class="help-header">
+      <div class="help-title">QUICK <span>GUIDE</span></div>
+      <button class="help-close" onclick="hideHelp()">✕</button>
     </div>
-    <div class="import-panel active" id="ipanel-backup">
-      <div class="import-drop" id="importDrop" onclick="document.getElementById('importFileInput').click()">
-        <div class="import-drop-label"><strong>Drop JSON file here</strong>or click to browse</div>
+    <div class="help-body">
+      <div class="help-section">
+        <div class="help-section-title">Logging a Session</div>
+        <div class="help-item"><div class="help-item-title">Exercise Type</div><div class="help-item-desc">Choose: Floor – Full Leg, Heel Up, Heel Down, Endurance Ramp, or Core.</div></div>
+        <div class="help-item"><div class="help-item-title">Day Number</div><div class="help-item-desc">Your practice day count. Auto-increments after each log — just confirm or change it.</div></div>
+        <div class="help-item"><div class="help-item-title">Start / End BPM</div><div class="help-item-desc">The tempo you started at and the highest you reached by the end.</div></div>
+        <div class="help-item"><div class="help-item-title">Session Feel</div><div class="help-item-desc">Tap an emoji — 😫 to 🤩 — to rate how the session felt.</div></div>
+        <div class="help-item"><div class="help-item-title">Edit a Session</div><div class="help-item-desc">Click any session in the sidebar or Full Log table to load it into the form. Make changes and click Save Changes.</div></div>
       </div>
-      <div class="import-warning">⚠ Merges with existing data. Duplicate sessions are skipped automatically.</div>
+      <div class="help-section">
+        <div class="help-section-title">Goals & True BPM</div>
+        <div class="help-item"><div class="help-item-title">True BPM</div><div class="help-item-desc">Your honest cold baseline — where you genuinely are without warming up. Set this first in the Goals tab.</div></div>
+        <div class="help-item"><div class="help-item-title">Goal Progress %</div><div class="help-item-desc">Calculated as: (Peak BPM − True BPM) ÷ (Target − True BPM). So 80→120→160 = 50%, not 75%.</div></div>
+      </div>
+      <div class="help-section">
+        <div class="help-section-title">Import & Export</div>
+        <div class="help-item"><div class="help-item-title">Export</div><div class="help-item-desc">Downloads a kicktracker-backup.json file. Keep this somewhere safe as your backup.</div></div>
+        <div class="help-item"><div class="help-item-title">Import — JSON</div><div class="help-item-desc">Restore a previous backup. Merges with existing data — duplicates are skipped.</div></div>
+        <div class="help-item"><div class="help-item-title">Import — CSV</div><div class="help-item-desc">Import historical sessions from a spreadsheet. The wizard auto-detects your columns and shows a preview before importing.</div></div>
+      </div>
+      <div class="help-section">
+        <div class="help-section-title">Cross-Device Sync</div>
+        <div class="help-item"><div class="help-item-title">Works everywhere</div><div class="help-item-desc">Sign in with the same Google account on any device — your data loads automatically. No export needed.</div></div>
+        <div class="help-item"><div class="help-item-title">Must use the live URL</div><div class="help-item-desc">Always open the tracker from the web URL. Opening a local HTML file won't work with Google sign-in.</div></div>
+      </div>
     </div>
-    <div class="import-panel" id="ipanel-csv">
-      <div class="csv-instructions">
-        Your CSV must have these columns:<br>
-        <code>day, date, exType, sets, setLen, startBPM, endBPM</code><br><br>
-        Optional: <code>ytLink, feel</code> &nbsp;|&nbsp; Date: <code>YYYY-MM-DD</code> &nbsp;|&nbsp; Feel: 1–5
-      </div>
-      <button class="dl-template-btn" onclick="downloadCSVTemplate()">⬇ Download CSV Template</button>
-      <div class="import-drop" id="csvDrop" onclick="document.getElementById('csvFileInput').click()">
-        <div class="import-drop-label"><strong>Drop CSV file here</strong>or click to browse</div>
-      </div>
-      <div class="import-warning">⚠ Merges with existing data. Duplicate day+exercise combinations are skipped.</div>
-    </div>
-    <div class="import-btn-row">
-      <button class="import-btn-cancel" onclick="hideImport()">✕ Cancel</button>
+    <div class="help-footer">
+      <a href="https://raw.githubusercontent.com/ketan-lgtm/art-of-drumming-hq-tracker/main/ArtOfDrummingHQ_TrackerGuide.pdf" target="_blank">📄 Download Full User Guide</a>
+      <span style="margin:0 10px;color:var(--text-muted)">·</span>
+      <a href="https://ketan-lgtm.github.io/art-of-drumming-hq-tracker" target="_blank">ketan-lgtm.github.io/art-of-drumming-hq-tracker</a>
     </div>
   </div>
 </div>
-<input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImportFile(this)">
-<input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="handleCSVFile(this)">
+
+<!-- IMPORT WIZARD -->
+<div class="wizard-overlay hidden" id="wizardOverlay">
+  <div class="wizard-box">
+    <div class="wizard-header">
+      <div class="wizard-title">IMPORT <span>WIZARD</span></div>
+      <div class="wizard-steps">
+        <div class="wizard-step active" id="wstep-1">1 · Upload File</div>
+        <div class="wizard-step" id="wstep-2">2 · Map Columns</div>
+        <div class="wizard-step" id="wstep-3">3 · Preview</div>
+        <div class="wizard-step" id="wstep-4">4 · Done</div>
+      </div>
+    </div>
+    <div class="wizard-body" id="wizardBody">
+      <!-- filled by JS -->
+    </div>
+    <div class="wizard-footer" id="wizardFooter">
+      <button class="wizard-btn-sec" onclick="hideImportWizard()">Cancel</button>
+      <button class="wizard-btn" id="wizardNextBtn" onclick="wizardNext()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+<input type="file" id="wizardFileInput" accept=".csv,.json" style="display:none" onchange="wizardHandleFile(this)">
 
 <script>
 // ── SUPABASE ──
@@ -978,67 +1159,314 @@ function drawMinChart() {
   const step=Math.max(1,Math.floor(data.length/10));ctx.textAlign='center';data.forEach((s,i)=>{if(i%step===0||i===data.length-1)ctx.fillText('D'+s.day,pad.l+(i/data.length)*iW+barW/2,H-6);});
 }
 
-// ── EXPORT / IMPORT ──
+// ── HELP ──
+function showHelp(){document.getElementById('helpOverlay').classList.remove('hidden');}
+function hideHelp(){document.getElementById('helpOverlay').classList.add('hidden');}
+
+// ── EXPORT ──
 function exportData() {
   const payload={version:2,exportedAt:new Date().toISOString(),profile,sessions};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='kicktracker-backup.json';a.click();URL.revokeObjectURL(url);showToast('DATA EXPORTED');
 }
 
-function showImport() {
-  document.getElementById('importOverlay').classList.remove('hidden');
-  const drop=document.getElementById('importDrop');
-  drop.ondragover=e=>{e.preventDefault();drop.classList.add('dragover');};drop.ondragleave=()=>drop.classList.remove('dragover');drop.ondrop=e=>{e.preventDefault();drop.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)processImportFile(f);};
-  const cdrop=document.getElementById('csvDrop');
-  cdrop.ondragover=e=>{e.preventDefault();cdrop.classList.add('dragover');};cdrop.ondragleave=()=>cdrop.classList.remove('dragover');cdrop.ondrop=e=>{e.preventDefault();cdrop.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)processCSVFile(f);};
-}
-function hideImport(){document.getElementById('importOverlay').classList.add('hidden');}
-function handleImportFile(input){const f=input.files[0];if(f)processImportFile(f);input.value='';}
-function handleCSVFile(input){const f=input.files[0];if(f)processCSVFile(f);input.value='';}
-function switchImportTab(name){document.querySelectorAll('.import-tab').forEach((t,i)=>t.classList.toggle('active',['backup','csv'][i]===name));document.querySelectorAll('.import-panel').forEach(p=>p.classList.remove('active'));document.getElementById('ipanel-'+name).classList.add('active');}
+// ── IMPORT WIZARD ──
+let wizardState = { step:1, rawText:'', fileType:'', parsedRows:[], mapping:{}, previewRows:[], toImport:[] };
 
-async function processImportFile(file) {
-  const reader=new FileReader();
-  reader.onload=async e=>{
-    try{
-      const data=JSON.parse(e.target.result);
-      const imported=Array.isArray(data)?data:(data.sessions||[]);
-      const importedProfile=(!Array.isArray(data)&&data.profile)?data.profile:null;
-      const existingDays=new Set(sessions.map(s=>s.day+'_'+s.exType));
-      const toAdd=imported.filter(s=>!existingDays.has(s.day+'_'+s.exType));
-      if(toAdd.length){
-        const rows=toAdd.map(s=>sessionToDb(s));
-        const{data:inserted}=await sb.from('sessions').insert(rows).select();
-        if(inserted){sessions=[...sessions,...inserted.map(dbToSession)].sort((a,b)=>a.day-b.day);}
-      }
-      if(importedProfile&&importedProfile.name&&!profile.name){profile={...profile,...importedProfile};await saveProfile();}
-      hideImport();render();checkNewMilestones();showToast(toAdd.length+' SESSIONS IMPORTED');
-    }catch(err){showToast('INVALID FILE');}
-  };reader.readAsText(file);
+const EX_VARIANTS = {
+  'Floor – Full Leg': ['floor full leg','full leg','floor-full leg','floor full','fulleg','floor full leg'],
+  'Floor – Heel Up': ['floor heel up','heel up','heelup','floor-heel up','floor heel up'],
+  'Floor – Heel Down': ['floor heel down','heel down','heeldown','floor-heel down','floor shin','shin','floor heel down'],
+  'Endurance Ramp': ['endurance ramp','endurance','ramp','endurance-ramp'],
+  'Core': ['core','core 1','core with weights','core weights','core1'],
+};
+
+function normalizeEx(val) {
+  if(!val) return null;
+  const v = val.toLowerCase().trim();
+  for(const [canonical, variants] of Object.entries(EX_VARIANTS)) {
+    if(variants.some(vv => v.includes(vv) || vv.includes(v))) return canonical;
+    if(v === canonical.toLowerCase()) return canonical;
+  }
+  return null;
 }
 
-async function processCSVFile(file) {
-  const reader=new FileReader();
-  reader.onload=async e=>{
-    try{
-      const lines=e.target.result.trim().split('\n');
-      const headers=lines[0].split(',').map(h=>h.trim().replace(/^"|"$/g,''));
-      const get=(row,key)=>{const i=headers.indexOf(key);return i>=0?row[i]?.trim().replace(/^"|"$/g,''):'';};
-      const existingDays=new Set(sessions.map(s=>s.day+'_'+s.exType));
-      const toAdd=[];
-      for(let i=1;i<lines.length;i++){
-        if(!lines[i].trim())continue;
-        const row=lines[i].split(',');
-        const day=parseInt(get(row,'day'));if(!day)continue;
-        const exType=get(row,'exType')||'Core';
-        if(existingDays.has(day+'_'+exType))continue;
-        toAdd.push({user_id:currentUser.id,day,date:get(row,'date')||new Date().toISOString().split('T')[0],ex_type:exType,sets:parseInt(get(row,'sets'))||4,set_len:parseFloat(get(row,'setLen'))||5,start_bpm:parseInt(get(row,'startBPM'))||80,end_bpm:parseInt(get(row,'endBPM'))||80,yt_link:get(row,'ytLink')||null,feel:parseInt(get(row,'feel'))||3});
-      }
-      if(toAdd.length){const{data:inserted}=await sb.from('sessions').insert(toAdd).select();if(inserted){sessions=[...sessions,...inserted.map(dbToSession)].sort((a,b)=>a.day-b.day);}}
-      hideImport();render();checkNewMilestones();showToast(toAdd.length+' ROWS IMPORTED');
-    }catch(err){showToast('CSV ERROR');}
-  };reader.readAsText(file);
+function parseDate(val) {
+  if(!val) return null;
+  val = String(val).trim();
+  // Already YYYY-MM-DD
+  if(/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  // DD/MM/YYYY or MM/DD/YYYY
+  if(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(val)) {
+    const [a,b,y] = val.split('/');
+    // Assume MM/DD/YYYY if first part <= 12
+    const m = parseInt(a) <= 12 ? a.padStart(2,'0') : b.padStart(2,'0');
+    const d = parseInt(a) <= 12 ? b.padStart(2,'0') : a.padStart(2,'0');
+    return `${y}-${m}-${d}`;
+  }
+  // DD-MM-YYYY
+  if(/^\d{1,2}-\d{1,2}-\d{4}$/.test(val)) {
+    const [d,m,y] = val.split('-');
+    return `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+  }
+  // Try native Date parse
+  const d = new Date(val);
+  if(!isNaN(d)) return d.toISOString().split('T')[0];
+  return null;
 }
+
+function showImportWizard() {
+  wizardState = { step:1, rawText:'', fileType:'', parsedRows:[], mapping:{}, previewRows:[], toImport:[] };
+  document.getElementById('wizardOverlay').classList.remove('hidden');
+  renderWizardStep();
+}
+function hideImportWizard() { document.getElementById('wizardOverlay').classList.add('hidden'); }
+
+function renderWizardStep() {
+  // Update step indicators
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById('wstep-'+i);
+    el.className = 'wizard-step' + (i === wizardState.step ? ' active' : i < wizardState.step ? ' done' : '');
+  });
+  const body = document.getElementById('wizardBody');
+  const nextBtn = document.getElementById('wizardNextBtn');
+  const footer = document.getElementById('wizardFooter');
+
+  if(wizardState.step === 1) {
+    nextBtn.textContent = 'Next →'; nextBtn.disabled = true;
+    footer.innerHTML = `<button class="wizard-btn-sec" onclick="hideImportWizard()">Cancel</button><button class="wizard-btn" id="wizardNextBtn" onclick="wizardNext()" disabled>Next →</button>`;
+    body.innerHTML = `
+      <div style="margin-bottom:14px;font-size:11px;color:var(--text-dim);line-height:1.7">
+        Upload a <strong style="color:var(--text)">CSV spreadsheet</strong> or a <strong style="color:var(--text)">JSON backup</strong>. Don't worry about column names — we'll help you map them in the next step.
+      </div>
+      <div class="wiz-drop" id="wizDrop" onclick="document.getElementById('wizardFileInput').click()">
+        <div class="wiz-drop-icon">📂</div>
+        <div class="wiz-drop-title">Drop file here</div>
+        <div class="wiz-drop-sub">CSV or JSON · Any column names · Up to thousands of rows<br><span style="color:var(--text-muted)">or click to browse</span></div>
+      </div>
+      <div style="text-align:center;margin-bottom:16px"><button class="dl-template-btn" style="max-width:280px;display:inline-block" onclick="downloadCSVTemplate()">⬇ Download CSV Template</button></div>
+      <div id="wizFileStatus" style="font-size:11px;color:var(--text-dim);text-align:center"></div>`;
+    // Wire drag/drop
+    setTimeout(() => {
+      const drop = document.getElementById('wizDrop');
+      if(drop) {
+        drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+        drop.ondragleave = () => drop.classList.remove('dragover');
+        drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); const f=e.dataTransfer.files[0]; if(f) wizardLoadFile(f); };
+      }
+    }, 50);
+
+  } else if(wizardState.step === 2) {
+    footer.innerHTML = `<button class="wizard-btn-sec" onclick="wizardBack()">← Back</button><button class="wizard-btn" id="wizardNextBtn" onclick="wizardNext()">Preview →</button>`;
+    if(wizardState.fileType === 'json') {
+      body.innerHTML = `<div style="font-size:13px;color:var(--text);margin-bottom:10px">JSON backup detected — no mapping needed.</div><div style="font-size:11px;color:var(--text-dim);line-height:1.7">Found <strong style="color:var(--gold)">${wizardState.parsedRows.length} sessions</strong> in the file. Click Preview to continue.</div>`;
+    } else {
+      const cols = Object.keys(wizardState.parsedRows[0] || {});
+      const fields = [
+        {key:'day', label:'Day Number', required:true},
+        {key:'date', label:'Date', required:false},
+        {key:'exType', label:'Exercise Type', required:false},
+        {key:'sets', label:'Total Sets', required:false},
+        {key:'setLen', label:'Set Length (min)', required:false},
+        {key:'startBPM', label:'Start BPM', required:false},
+        {key:'endBPM', label:'End BPM', required:true},
+        {key:'ytLink', label:'YouTube Link', required:false},
+        {key:'feel', label:'Session Feel (1-5)', required:false},
+      ];
+      // Auto-guess mapping
+      if(!Object.keys(wizardState.mapping).length) {
+        const guesses = { day:['day','day number','practice day','session','#'], date:['date','session date','practice date'], exType:['extype','exercise','exercise type','type','ex type'], sets:['sets','total sets','num sets','number of sets'], setLen:['setlen','set length','length','duration','min','minutes'], startBPM:['startbpm','start bpm','start','bpm start','opening bpm','from bpm'], endBPM:['endbpm','end bpm','end','bpm end','peak bpm','peak','top bpm','bpm','tempo'], ytLink:['ytlink','youtube','video','url','link'], feel:['feel','feeling','mood','rating','score'] };
+        fields.forEach(f => {
+          const g = guesses[f.key] || [];
+          const match = cols.find(c => g.some(gv => c.toLowerCase().replace(/[\s_-]/g,'').includes(gv.replace(/[\s_-]/g,''))));
+          if(match) wizardState.mapping[f.key] = match;
+        });
+      }
+      body.innerHTML = `
+        <div class="mapper-note">Your CSV has <strong style="color:var(--gold)">${cols.length} columns</strong> and <strong style="color:var(--gold)">${wizardState.parsedRows.length} rows</strong>. We've auto-guessed the mapping below — adjust anything that looks wrong. Only Day and End BPM are required.</div>
+        <div class="mapper-grid"><div class="mapper-header">Tracker Field</div><div></div><div class="mapper-header">Your Column</div></div>
+        ${fields.map(f => `
+          <div class="mapper-grid">
+            <div class="mapper-label">${f.label}${f.required?' <span style="color:var(--red)">*</span>':''}</div>
+            <div class="mapper-arrow">→</div>
+            <select class="mapper-select" id="map-${f.key}" onchange="wizardState.mapping['${f.key}']=this.value">
+              <option value="">— skip —</option>
+              ${cols.map(c => `<option value="${c}" ${wizardState.mapping[f.key]===c?'selected':''}>${c}</option>`).join('')}
+            </select>
+          </div>`).join('')}`;
+    }
+
+  } else if(wizardState.step === 3) {
+    footer.innerHTML = `<button class="wizard-btn-sec" onclick="wizardBack()">← Back</button><button class="wizard-btn" id="wizardNextBtn" onclick="wizardNext()">Import ${wizardState.toImport.length} Sessions →</button>`;
+    buildPreview();
+    const ok = wizardState.toImport.length;
+    const warn = wizardState.previewRows.filter(r=>r.status==='warn').length;
+    const err = wizardState.previewRows.filter(r=>r.status==='err').length;
+    const skip = wizardState.previewRows.filter(r=>r.status==='skip').length;
+    body.innerHTML = `
+      <div class="preview-summary">
+        <span class="preview-pill ok">✓ ${ok} ready to import</span>
+        ${warn?`<span class="preview-pill warn">⚠ ${warn} with warnings</span>`:''}
+        ${err?`<span class="preview-pill err">✕ ${err} errors (will skip)</span>`:''}
+        ${skip?`<span class="preview-pill skip">↷ ${skip} duplicates (will skip)</span>`:''}
+      </div>
+      <div class="preview-wrap">
+        <table class="preview-table">
+          <thead><tr><th>#</th><th>Day</th><th>Date</th><th>Exercise</th><th>Sets</th><th>Min</th><th>Start</th><th>End BPM</th><th>Feel</th><th>Status</th></tr></thead>
+          <tbody>
+            ${wizardState.previewRows.map((r,i) => `
+              <tr class="row-${r.status}">
+                <td>${i+1}</td>
+                <td class="${r.day?'cell-ok':'cell-err'}">${r.day||'?'}</td>
+                <td class="${r.date?'cell-ok':'cell-warn'}">${r.date||'today'}</td>
+                <td class="${r.exType?'cell-ok':'cell-warn'}">${r.exType||'Core'}</td>
+                <td>${r.sets||4}</td>
+                <td>${r.setLen||5}</td>
+                <td>${r.startBPM||80}</td>
+                <td class="${r.endBPM?'cell-ok':'cell-err'}">${r.endBPM||'?'}</td>
+                <td>${r.feel?['','😫','😕','😐','🙂','🤩'][r.feel]||r.feel:''}</td>
+                <td class="cell-${r.status==='ok'||r.status==='warn'?'ok':r.status==='skip'?'warn':'err'}">${r.statusMsg}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+
+  } else if(wizardState.step === 4) {
+    footer.innerHTML = `<button class="wizard-btn" onclick="hideImportWizard()">Done ✓</button>`;
+    body.innerHTML = `
+      <div style="text-align:center;padding:30px 0">
+        <div style="font-size:56px;margin-bottom:16px">✅</div>
+        <div style="font-family:var(--display);font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--green);margin-bottom:8px">Import Complete</div>
+        <div style="font-size:13px;color:var(--text-dim)" id="wizDoneMsg"></div>
+      </div>`;
+  }
+}
+
+function wizardHandleFile(input) { const f=input.files[0]; if(f) wizardLoadFile(f); input.value=''; }
+
+function wizardLoadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    const status = document.getElementById('wizFileStatus');
+    // Detect JSON vs CSV
+    if(file.name.endsWith('.json') || text.trim().startsWith('{') || text.trim().startsWith('[')) {
+      try {
+        const data = JSON.parse(text);
+        const rows = Array.isArray(data) ? data : (data.sessions||[]);
+        if(!rows.length) { if(status) status.textContent='No sessions found in file.'; return; }
+        wizardState.rawText = text; wizardState.fileType = 'json'; wizardState.parsedRows = rows;
+        if(status) status.innerHTML = `<span style="color:var(--green)">✓ ${rows.length} sessions found in JSON backup</span>`;
+        document.getElementById('wizardNextBtn').disabled = false;
+      } catch(e) { if(status) status.innerHTML = `<span style="color:var(--red)">✕ Invalid JSON file</span>`; }
+    } else {
+      // Parse CSV
+      const lines = text.trim().split('\n').filter(l=>l.trim());
+      if(lines.length < 2) { if(status) status.innerHTML=`<span style="color:var(--red)">✕ CSV needs at least a header row and one data row</span>`; return; }
+      const headers = lines[0].split(',').map(h=>h.trim().replace(/^"|"$/g,''));
+      const rows = [];
+      for(let i=1;i<lines.length;i++) {
+        const vals = smartSplitCSV(lines[i]);
+        if(vals.length === 0 || vals.every(v=>!v.trim())) continue;
+        const row = {};
+        headers.forEach((h,j) => { row[h] = (vals[j]||'').trim().replace(/^"|"$/g,''); });
+        rows.push(row);
+      }
+      wizardState.rawText = text; wizardState.fileType = 'csv'; wizardState.parsedRows = rows; wizardState.mapping = {};
+      if(status) status.innerHTML = `<span style="color:var(--green)">✓ ${rows.length} rows found, ${headers.length} columns detected</span>`;
+      document.getElementById('wizardNextBtn').disabled = false;
+    }
+  };
+  reader.readAsText(file);
+}
+
+function smartSplitCSV(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for(let i=0;i<line.length;i++) {
+    if(line[i]==='"') { inQ=!inQ; }
+    else if(line[i]===',' && !inQ) { result.push(cur); cur=''; }
+    else { cur+=line[i]; }
+  }
+  result.push(cur); return result;
+}
+
+function buildPreview() {
+  const today = new Date().toISOString().split('T')[0];
+  const existingKeys = new Set(sessions.map(s=>s.day+'_'+s.exType));
+  wizardState.previewRows = [];
+  wizardState.toImport = [];
+
+  let rawRows = wizardState.fileType === 'json' ? wizardState.parsedRows : wizardState.parsedRows;
+
+  rawRows.forEach(row => {
+    let r = {};
+    if(wizardState.fileType === 'json') {
+      // JSON already has correct keys
+      r = { day:row.day, date:row.date, exType:row.exType, sets:row.sets||4, setLen:row.setLen||5, startBPM:row.startBPM||80, endBPM:row.endBPM, ytLink:row.ytLink||'', feel:row.feel||3 };
+    } else {
+      const g = k => wizardState.mapping[k] ? (row[wizardState.mapping[k]]||'').trim() : '';
+      r.day = parseInt(g('day')) || null;
+      r.date = parseDate(g('date')) || today;
+      r.exType = normalizeEx(g('exType')) || 'Core';
+      r.sets = parseInt(g('sets')) || 4;
+      r.setLen = parseFloat(g('setLen')) || 5;
+      r.startBPM = parseInt(g('startBPM')) || 80;
+      r.endBPM = parseInt(g('endBPM')) || null;
+      r.ytLink = g('ytLink') || '';
+      r.feel = parseInt(g('feel')) || 3;
+    }
+
+    // Determine status
+    const key = r.day+'_'+r.exType;
+    if(!r.day || !r.endBPM) { r.status='err'; r.statusMsg='Missing day or BPM'; }
+    else if(existingKeys.has(key)) { r.status='skip'; r.statusMsg='Duplicate'; }
+    else if(!wizardState.mapping.date && wizardState.fileType==='csv') { r.status='warn'; r.statusMsg='Date defaulted'; wizardState.toImport.push(r); }
+    else { r.status='ok'; r.statusMsg='Ready'; wizardState.toImport.push(r); }
+    wizardState.previewRows.push(r);
+  });
+}
+
+async function wizardNext() {
+  if(wizardState.step === 1) { wizardState.step=2; renderWizardStep(); }
+  else if(wizardState.step === 2) {
+    // Validate required mappings for CSV
+    if(wizardState.fileType==='csv') {
+      if(!wizardState.mapping.day) { showToast('MAP THE DAY COLUMN FIRST'); return; }
+      if(!wizardState.mapping.endBPM) { showToast('MAP THE END BPM COLUMN FIRST'); return; }
+      // Read current select values
+      ['day','date','exType','sets','setLen','startBPM','endBPM','ytLink','feel'].forEach(k => {
+        const el = document.getElementById('map-'+k);
+        if(el) wizardState.mapping[k] = el.value;
+      });
+    }
+    wizardState.step=3; renderWizardStep();
+  }
+  else if(wizardState.step === 3) {
+    // Do the actual import
+    if(!wizardState.toImport.length) { showToast('NOTHING TO IMPORT'); return; }
+    document.getElementById('wizardNextBtn').disabled = true;
+    document.getElementById('wizardNextBtn').textContent = 'Importing...';
+    const rows = wizardState.toImport.map(r => ({
+      user_id: currentUser.id, day: r.day, date: r.date,
+      ex_type: r.exType, sets: r.sets, set_len: r.setLen,
+      start_bpm: r.startBPM, end_bpm: r.endBPM,
+      yt_link: r.ytLink||null, feel: r.feel||3
+    }));
+    // Import in batches of 100
+    let imported = 0;
+    for(let i=0;i<rows.length;i+=100) {
+      const batch = rows.slice(i,i+100);
+      const { data, error } = await sb.from('sessions').insert(batch).select();
+      if(!error && data) { sessions.push(...data.map(dbToSession)); imported+=data.length; }
+    }
+    sessions.sort((a,b)=>a.day-b.day);
+    wizardState.step=4; renderWizardStep();
+    document.getElementById('wizDoneMsg').textContent = `${imported} sessions imported successfully. Your tracker has been updated.`;
+    showSync(); render(); checkNewMilestones();
+  }
+}
+
+function wizardBack() { wizardState.step--; renderWizardStep(); }
 
 function downloadCSVTemplate(){
   const csv='day,date,exType,sets,setLen,startBPM,endBPM,ytLink,feel\n1,2024-01-01,Core,4,5,70,80,,3\n2,2024-01-02,Floor – Full Leg,4,5,75,85,,4';
